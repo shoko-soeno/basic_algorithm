@@ -1,25 +1,24 @@
 /* 度数分布(ヒストグラム) */
 
 #include <stdio.h>
-#define N 20
 
-long combi(int, int);
+#define Num 20
 
-int main(){
-    int n, r;
-    for (n=0; n<=5 ;n++){
-        for (r=0; r<=n ; r++){
-            printf("%dC%d=%ld ",n,r,combi(n,r));
-        printf("\n");
-        }
-    }
-}
-
-long combi(int n, int r)
+void main(void)
 {
-    int i;
-    long p=1;
-    for(i=1; i<=r; i++)
-        p=p*(n-i+1)/i;
-    return p;
+    int a[]={35,25,56,78,43,66,71,73,80,90,
+              0,73,35,65,100,78,80,85,35,50};
+    int i,rank,histo[11];
+
+    for (i=0;i<=10;i++)
+        histo[i]=0;
+
+    for (i=0;i<Num;i++){
+        rank=a[i]/10;//写像
+        if (0<=rank && rank<=10)
+            histo[rank]++;
+    }
+
+    for (i=0;i<=10;i++)
+        printf("%3d -  :%3d\n",i*10,histo[i]);
 }
